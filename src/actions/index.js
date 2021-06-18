@@ -1,4 +1,10 @@
-import { GET_TODOS, DELETE_TODO, ADD_TODO, UPDATE_TODO } from './types';
+import {
+  GET_TODOS,
+  DELETE_TODO,
+  ADD_TODO,
+  UPDATE_TODO,
+  FINISH_TODO,
+} from './types';
 const todoList = [
   {
     key: 1,
@@ -38,9 +44,9 @@ const todoList = [
   },
 ];
 
-export const getTodos = () => async (dispathch) => {
+export const getTodos = () => async (dispatch) => {
   try {
-    dispathch({
+    dispatch({
       type: GET_TODOS,
       payload: todoList,
     });
@@ -49,11 +55,11 @@ export const getTodos = () => async (dispathch) => {
   }
 };
 
-export const deleteTodo = (key) => async (dispathch) => {
+export const deleteTodo = (key) => async (dispatch) => {
   let newTodos = todoList.filter((t) => !key.includes(t.key));
-  console.log('todolist', newTodos);
+
   try {
-    dispathch({
+    dispatch({
       type: DELETE_TODO,
       payload: newTodos,
     });
@@ -62,11 +68,11 @@ export const deleteTodo = (key) => async (dispathch) => {
   }
 };
 
-export const addTodo = (item) => async (dispathch) => {
+export const addTodo = (item) => async (dispatch) => {
   let newTodos = [...todoList, item];
 
   try {
-    dispathch({
+    dispatch({
       type: ADD_TODO,
       payload: newTodos,
     });
@@ -74,15 +80,31 @@ export const addTodo = (item) => async (dispathch) => {
     console.log(e);
   }
 };
-export const updateTodo = (key) => async (dispathch) => {
+export const updateTodo = (key) => async (dispatch) => {
   let newTodos = [...todoList];
   let objIndex = newTodos.findIndex((obj) => obj.key === key);
   newTodos[objIndex].status === 'Finished'
     ? (newTodos[objIndex].status = 'In Progress')
     : (newTodos[objIndex].status = 'Finished');
   try {
-    dispathch({
+    dispatch({
       type: UPDATE_TODO,
+      payload: newTodos,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const finishTodo = (keys) => async (dispatch) => {
+  let newTodos = [...todoList];
+  newTodos.map((t) => {
+    if (keys.includes(t.key)) t.status = 'Finished';
+    return '';
+  });
+  try {
+    dispatch({
+      type: FINISH_TODO,
       payload: newTodos,
     });
   } catch (e) {

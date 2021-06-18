@@ -506,10 +506,10 @@ const layouts = [
   { i: 'b', x: 3, y: 0, w: 3, h: 3, minW: 3, minH: 3, maxH: 3 },
   { i: 'c', x: 6, y: 0, w: 3, h: 3, minW: 3, minH: 3, maxH: 3 },
   { i: 'd', x: 9, y: 0, w: 3, h: 3, minW: 3, minH: 3, maxH: 3 },
-  { i: 'e', x: 0, y: 3, w: 6, h: 11, minW: 4, minH: 8 },
-  { i: 'f', x: 6, y: 3, w: 6, h: 11, minW: 6, minH: 9 },
-  { i: 'g', x: 0, y: 6, w: 6, h: 11, minW: 6, minH: 9 },
-  { i: 'h', x: 6, y: 6, w: 6, h: 11, minW: 6, minH: 9 },
+  { i: 'e', x: 0, y: 3, w: 6, h: 10, minW: 4, minH: 8 },
+  { i: 'f', x: 6, y: 3, w: 6, h: 10, minW: 6, minH: 9 },
+  { i: 'g', x: 0, y: 6, w: 6, h: 10, minW: 6, minH: 9 },
+  { i: 'h', x: 6, y: 6, w: 6, h: 10, minW: 6, minH: 9 },
 ];
 
 // const initlayouts = [

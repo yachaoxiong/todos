@@ -3,6 +3,7 @@ import {
   DELETE_TODO,
   ADD_TODO,
   UPDATE_TODO,
+  FINISH_TODO,
 } from '../actions/types';
 const INITAL_STATE = {
   type: null,
@@ -30,6 +31,12 @@ const todoReducer = (state = INITAL_STATE, action) => {
         payload: action.payload,
       };
     case UPDATE_TODO:
+      return {
+        ...state,
+        type: action.type,
+        payload: action.payload,
+      };
+    case FINISH_TODO:
       return {
         ...state,
         type: action.type,

@@ -4,7 +4,7 @@ import moment from 'moment';
 import Create from './create';
 import TodoCalendar from './todoCalendar';
 import { connect } from 'react-redux';
-import { getTodos, deleteTodo, addTodo } from '../../actions/index';
+import { getTodos, deleteTodo, addTodo, finishTodo } from '../../actions/index';
 import {
   Col,
   Row,
@@ -18,7 +18,7 @@ import {
   Divider,
   Tooltip,
 } from 'antd';
-import { blue, yellow, red, magenta, green } from '@ant-design/colors';
+import { blue, yellow, red, magenta } from '@ant-design/colors';
 import {
   SnippetsOutlined,
   LineChartOutlined,
@@ -84,27 +84,61 @@ class index extends Component {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      render: (text) => {
-        let color;
-        if (text === 'Planed') color = magenta[5];
-        if (text === 'In Progress') color = yellow[5];
-        if (text === 'Finished') color = green[5];
-        return (
-          <div style={{ position: 'relative' }}>
-            <span
-              style={{
-                background: color,
-                borderRadius: '50%',
-                width: '10px',
-                height: '10px',
-                left: '-15px',
-                top: '5.8px',
-                position: 'absolute',
-              }}
-            ></span>
-            <span style={{ fontWeight: 500 }}>{text}</span>
-          </div>
-        );
+      render: (status) => {
+        switch (status) {
+          case 'Planed':
+            return (
+              <div
+                style={{
+                  position: 'relative',
+                }}
+              >
+                <span
+                  style={{ fontSize: '1.2rem', position: 'relative' }}
+                  data-color={'magenta'}
+                  className='table-status'
+                >
+                  {status}
+                </span>
+              </div>
+            );
+          case 'In Progress':
+            return (
+              <div
+                style={{
+                  position: 'relative',
+                }}
+              >
+                <span
+                  style={{ fontSize: '1.2rem', position: 'relative' }}
+                  data-color={'yellow'}
+                  className='table-status'
+                >
+                  {status}
+                </span>
+              </div>
+            );
+          case 'Finished':
+            return (
+              <div
+                style={{
+                  textAlign: 'left',
+                }}
+              >
+                <img
+                  alt='HOME'
+                  style={{
+                    padding: '0 30% 0 0',
+                    width: '100%',
+                    maxWidth: '200px',
+                  }}
+                  src={require('../../images/finishIcon.svg').default}
+                />
+              </div>
+            );
+          default:
+            break;
+        }
       },
     },
     {
@@ -141,7 +175,7 @@ class index extends Component {
     },
   ];
   state = {
-    deletedItmes: [],
+    selectedRowKeys: [],
     selectedItem: {},
     isModalVisible: false,
     visible: false,
@@ -409,26 +443,34 @@ class index extends Component {
   };
 
   // rowSelection object indicates the need for row selection
-  rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      this.setState({ deletedItmes: selectedRowKeys });
-      //console.log('this state items', selectedRowKeys);
-    },
-    // onSelect: (record, selected, selectedRows) => {
-    //   console.log(record, selected, selectedRows);
-    // },
-    // onSelectAll: (selected, selectedRows, changeRows) => {
-    //   console.log(selected, selectedRows, changeRows);
-    // },
-    // getCheckboxProps: (record) => ({
-    //   disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    // }),
-  };
+
   getSeletedItems() {
+    if (this.state.selectedRowKeys.length > 0) {
+      message.info(`Task(s) deleted!`);
+      this.props.deleteTodo(this.state.selectedRowKeys);
+    } else {
+      message.warning('Please select a task!');
+    }
     // console.log('current ', this.state.deletedItmes);
-    this.props.deleteTodo(this.state.deletedItmes);
+  }
+  getFinishedItems() {
+    if (this.state.selectedRowKeys.length > 0) {
+      message.info(`Task(s) status changed!`);
+      this.props.finishTodo(this.state.selectedRowKeys);
+      this.setState({ selectedRowKeys: [] });
+    } else {
+      message.warning('Please select a task!');
+    }
   }
   render() {
+    const { selectedRowKeys } = this.state;
+    // console.log('deletedItmes', selectedRowKeys);
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: (selectedRowKeys) => {
+        this.setState({ selectedRowKeys });
+      },
+    };
     //console.log('get todos', this.props.todos);
     return (
       <div>
@@ -464,7 +506,10 @@ class index extends Component {
                     <DeleteFilled />
                     Delete Selected
                   </Button>
-                  <Button style={{ marginLeft: 10 }}>
+                  <Button
+                    onClick={() => this.getFinishedItems()}
+                    style={{ marginLeft: 10 }}
+                  >
                     <DeleteFilled />
                     Finish Selected
                   </Button>
@@ -504,7 +549,7 @@ class index extends Component {
                     showSizeChanger: true,
                     pageSizeOptions: ['10', '20', '30', '100'],
                   }}
-                  rowSelection={this.rowSelection}
+                  rowSelection={rowSelection}
                   dataSource={this.props.todos}
                   columns={this.columns}
                 />
@@ -607,6 +652,9 @@ const mapStateToProps = (state) => {
     charts: state.statisticsChart,
   };
 };
-export default connect(mapStateToProps, { getTodos, deleteTodo, addTodo })(
-  index
-);
+export default connect(mapStateToProps, {
+  getTodos,
+  deleteTodo,
+  addTodo,
+  finishTodo,
+})(index);
