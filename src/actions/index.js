@@ -32,7 +32,7 @@ const todoList = [
   },
   {
     key: 3,
-    title: 'illo expedita consequatur quia in',
+    title: 'illo expedita ',
     category: 'Work',
     priority: 'High',
     createdDate: Date.now(),

@@ -38,7 +38,7 @@ class app extends Component {
               collapsed={this.state.collapsed}
             />
             <Switch>
-              <Route path='/dashboard' exact component={Dashboard} />
+              <Route path='/' exact component={Dashboard} />
               <Route path='/todos' exact component={Todo} />
               <Route path='/setting' exact component={ThemeColor} />
             </Switch>

@@ -29,7 +29,7 @@ class Siderbar extends React.Component {
           style={{ background: 'inherit', borderRight: 0, marginTop: 5 }}
         >
           <Menu.Item key='1' icon={<HomeFilled />}>
-            <Link className='nav-link' to='/dashboard'>
+            <Link className='nav-link' to='/'>
               Dashboard
             </Link>
           </Menu.Item>
