@@ -251,20 +251,6 @@ class index extends Component {
         onClose={this.onClose}
         visible={this.state.visible}
         bodyStyle={{ paddingBottom: 80 }}
-        // footer={
-        //   <div
-        //     style={{
-        //       textAlign: 'right',
-        //     }}
-        //   >
-        //     <Button onClick={this.onClose} style={{ marginRight: 8 }}>
-        //       Cancel
-        //     </Button>
-        //     <Button onClick={this.onClose} type='primary'>
-        //       Submit
-        //     </Button>
-        //   </div>
-        // }
       >
         <Form
           layout='vertical'
@@ -439,7 +425,7 @@ class index extends Component {
     // }),
   };
   getSeletedItems() {
-    console.log('current ', this.state.deletedItmes);
+    // console.log('current ', this.state.deletedItmes);
     this.props.deleteTodo(this.state.deletedItmes);
   }
   render() {
@@ -544,7 +530,7 @@ class index extends Component {
                 key='4'
               >
                 <Row gutter={[38, 8]}>
-                  <Col xxl={4} xl={12} lg={18} md={18} sm={24} xs={24}>
+                  <Col xxl={6} xl={12} lg={18} md={18} sm={24} xs={24}>
                     <div style={{ background: 'white', borderRadius: '15px' }}>
                       <div
                         style={{
@@ -575,7 +561,7 @@ class index extends Component {
                       </div>
                     </div>
                   </Col>
-                  <Col xxl={4} xl={12} lg={18} md={18} sm={24} xs={24}>
+                  <Col xxl={6} xl={12} lg={18} md={18} sm={24} xs={24}>
                     <div style={{ background: 'white', borderRadius: '15px' }}>
                       <div
                         style={{
