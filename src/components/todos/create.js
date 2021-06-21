@@ -7,12 +7,13 @@ const Create = ({ visible, onOk, onCancel }) => {
     <Modal
       className='taskModal'
       width={'50%'}
-      title='Add Task'
+      title='Add New Task'
       bodyStyle={{ padding: '16px' }}
       visible={visible}
       style={{ top: '10%' }}
       onOk={() => onOk(form)}
       onCancel={onCancel}
+    
     >
       <Form form={form} name='taskForm' layout='vertical'>
         <Row gutter={16}>

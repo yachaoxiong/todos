@@ -453,8 +453,7 @@ class grid extends React.Component {
     }
   }
   onLayoutChange(layout, layouts) {
-    console.log('current layout', layout);
-    console.log('current layouts', layouts);
+  
     this.props.onLayoutChange(layout, layouts);
     this.setState({ layouts });
   }

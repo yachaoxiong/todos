@@ -203,12 +203,12 @@ class themeColor extends Component {
               tab={
                 <span>
                   <AreaChartOutlined />
-                  Tab 2
+                  Dashboard
                 </span>
               }
               key='2'
             >
-              Tab 2
+              Designed and Developed by Yachao
             </TabPane>
           </Tabs>
         </div>

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Layout, Button ,Tooltip} from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  GithubOutlined,
+  LinkedinOutlined,
 } from '@ant-design/icons';
 // import Title from 'antd/lib/skeleton/Title';
 
 const { Header } = Layout;
 
 class header extends Component {
+  onClick(link) {
+    window.open(link, '_blank'); //to open new page
+  }
   render() {
     return (
       <div
@@ -53,10 +56,28 @@ class header extends Component {
               marginRight: 20,
             }}
           >
-            <h3>
-              <GithubOutlined style={{ marginRight: 10 }} />
-              Developed by Eric
-            </h3>
+            <Tooltip placement="bottom" title='See My Personal Web App '>
+            <Button
+              type='link'
+              onClick={() => this.onClick('https://ericxiong.herokuapp.com/')}
+              style={{ fontSize: '1.12rem' }}
+            >
+             Profile
+            </Button>
+      </Tooltip>
+       
+            <Button
+              type='link'
+              onClick={() =>
+                this.onClick(
+                  'https://www.linkedin.com/in/yachao-xiong-231b94130/'
+                )
+              }
+              style={{ fontSize: '1.12rem' }}
+            >
+              <LinkedinOutlined style={{ marginRight: 0 }} />
+              Developed by Yachao
+            </Button>
           </div>
         </Header>
       </div>

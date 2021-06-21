@@ -14,7 +14,7 @@ const store = createStore(
 );
 const appColor = localStorage.getItem('themeColor')
   ? ''
-  : localStorage.setItem('themeColor', '#f8a488');
+  : localStorage.setItem('themeColor', '#fa8c16');
 
 window.less
   .modifyVars({
