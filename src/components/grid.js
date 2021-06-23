@@ -28,7 +28,7 @@ class grid extends React.Component {
       currentBreakpoint: 'lg',
       compactType: 'vertical',
       mounted: false,
-      layouts: { lg: layouts },
+      layouts: { lg: props.initialLayout },
     };
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
     this.onLayoutChange = this.onLayoutChange.bind(this);
@@ -44,7 +44,7 @@ class grid extends React.Component {
     setTimeout(() => {
       ResponsiveReactGridLayout = WidthProvider(Responsive);
       this.setState({ mounted: false });
-    }, 100);
+    }, 150);
   }
   statusColor(status) {
     switch (status) {
@@ -453,7 +453,6 @@ class grid extends React.Component {
     }
   }
   onLayoutChange(layout, layouts) {
-  
     this.props.onLayoutChange(layout, layouts);
     this.setState({ layouts });
   }

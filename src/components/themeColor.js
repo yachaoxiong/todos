@@ -119,7 +119,11 @@ class themeColor extends Component {
       } else {
         return (
           <div key={c}>
-            <Button type='link' onClick={() => this.handleSwitchChange(c)}>
+            <Button
+              type='link'
+              style={{ height: '100%' }}
+              onClick={() => this.handleSwitchChange(c)}
+            >
               <div
                 className='theme-color-item'
                 style={{
