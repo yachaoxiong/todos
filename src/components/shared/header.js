@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Layout, Button ,Tooltip} from 'antd';
+import { Layout, Button, Tooltip } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  LinkedinOutlined,
+  GithubOutlined,
 } from '@ant-design/icons';
 // import Title from 'antd/lib/skeleton/Title';
 
@@ -56,27 +56,22 @@ class header extends Component {
               marginRight: 20,
             }}
           >
-            <Tooltip placement="bottom" title='See My Personal Web App '>
+            <Tooltip placement='bottom' title='See My Personal Web App '>
+              <Button
+                type='link'
+                onClick={() => this.onClick('https://yachao.vercel.app')}
+                style={{ fontSize: '1.12rem' }}
+              >
+                Developed by Yachao
+              </Button>
+            </Tooltip>
+
             <Button
               type='link'
-              onClick={() => this.onClick('https://ericxiong.herokuapp.com/')}
+              onClick={() => this.onClick('https://github.com/yachaoxiong')}
               style={{ fontSize: '1.12rem' }}
             >
-             Profile
-            </Button>
-      </Tooltip>
-       
-            <Button
-              type='link'
-              onClick={() =>
-                this.onClick(
-                  'https://www.linkedin.com/in/yachao-xiong-231b94130/'
-                )
-              }
-              style={{ fontSize: '1.12rem' }}
-            >
-              <LinkedinOutlined style={{ marginRight: 0 }} />
-              Developed by Yachao
+              <GithubOutlined style={{ marginRight: 0 }} />
             </Button>
           </div>
         </Header>

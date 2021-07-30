@@ -212,7 +212,11 @@ class themeColor extends Component {
               }
               key='2'
             >
-              Designed and Developed by Yachao
+              {/* <img
+                alt='new'
+                src={require('../images/man-work.gif').default}
+                style={{ width: '300px', height: '100%' }}
+              /> */}
             </TabPane>
           </Tabs>
         </div>
